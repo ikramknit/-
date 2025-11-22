@@ -1,0 +1,7 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+  @if (authService.isAuthenticated()) {
+    <app-image-uploader></app-image-uploader>
+  } @else {
+    <app-login></app-login>
+  }
+</div>
