@@ -6,20 +6,24 @@ import { AuthService } from '../../services/auth.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   imports: [ReactiveFormsModule],
-  // FIX: Provide FormBuilder to make it available for injection in this component.
-  providers: [FormBuilder],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent {
-  private fb = inject(FormBuilder);
+  // FIX: Moved FormBuilder injection and form initialization to the constructor to resolve a type inference issue with field initializers.
+  private readonly fb: FormBuilder;
   private authService = inject(AuthService);
 
-  loginForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required]
-  });
+  readonly loginForm;
 
   errorMessage = signal<string | null>(null);
+
+  constructor() {
+    this.fb = inject(FormBuilder);
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
+  }
 
   onSubmit() {
     if (this.loginForm.valid) {
