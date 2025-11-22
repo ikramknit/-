@@ -1,0 +1,57 @@
+
+<section id="staff" class="my-8 md:my-16">
+  <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8">हमारा स्टाफ और संकाय</h2>
+
+    <!-- Staff Table -->
+    <h3 class="text-2xl font-semibold text-orange-600 mb-4">शैक्षणिक स्टाफ</h3>
+    <div class="overflow-x-auto rounded-lg shadow">
+      <table class="w-full text-sm text-left text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+          <tr>
+            <th scope="col" class="px-6 py-3">क्रम सं०</th>
+            <th scope="col" class="px-6 py-3">नाम</th>
+            <th scope="col" class="px-6 py-3">पदनाम</th>
+            <th scope="col" class="px-6 py-3">विषय</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (member of staff(); track member.sr) {
+            <tr class="bg-white border-b hover:bg-gray-50">
+              <td class="px-6 py-4">{{ member.sr }}</td>
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ member.name }}</th>
+              <td class="px-6 py-4">{{ member.designation }}</td>
+              <td class="px-6 py-4">{{ member.subject }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Faculties -->
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div>
+        <h3 class="text-2xl font-semibold text-orange-600 mb-4">कला संकाय</h3>
+        <ul class="space-y-2">
+          @for (subject of artsFaculty(); track subject) {
+            <li class="flex items-center text-gray-700">
+              <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <span>{{ subject }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-2xl font-semibold text-orange-600 mb-4">विज्ञान संकाय</h3>
+         <ul class="space-y-2">
+          @for (subject of scienceFaculty(); track subject) {
+            <li class="flex items-center text-gray-700">
+              <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <span>{{ subject }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
